@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
+require "phlex"
+require "syntax_tree"
+
 module Phlex
 	class Compiler
+		Loader = Zeitwerk::Loader.new.tap do |loader|
+			loader.push_dir("#{__dir__}/compiler", namespace: Phlex::Compiler)
+			loader.inflector = Zeitwerk::GemInflector.new(__FILE__)
+			loader.inflector.inflect "fcall" => "FCall", "vcall" => "VCall"
+			loader.setup
+		end
+
 		def initialize(view)
 			@view = view
 		end

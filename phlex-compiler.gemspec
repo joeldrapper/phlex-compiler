@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
 	spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
 	spec.require_paths = ["lib"]
 
-	spec.add_dependency "phlex", "~> 0.5"
+	spec.add_dependency "phlex", "~> 1.0"
 	spec.add_dependency "syntax_tree", "~> 3.6"
 
 	spec.metadata["rubygems_mfa_required"] = "true"

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require "compiler_test_helpers"
 require "content"
 
 describe Phlex::Compiler do
@@ -61,7 +61,7 @@ describe Phlex::Compiler do
 		expect(output.first).to be == <<~RUBY
 			def template
 				greeting = "Hello"
-				@_target << "<h1>" << Hescape.escape_html(greeting) << "</h1>"
+				@_target << "<h1>" << ERB::Util.html_escape(greeting) << "</h1>"
 			end
 		RUBY
 	end
@@ -71,7 +71,7 @@ describe Phlex::Compiler do
 
 		expect(output.first).to be == <<~RUBY
 			def template
-				@_target << "<h1>" << Hescape.escape_html(@hello) << "</h1>"
+				@_target << "<h1>" << ERB::Util.html_escape(@hello) << "</h1>"
 			end
 		RUBY
 	end
